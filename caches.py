@@ -1,6 +1,7 @@
 from math import log
 import random
 import time
+import json
 
 class Cache: 
     
@@ -42,3 +43,6 @@ class Cache:
                 del(self.cache[index_value][random_key])
             self.cache[index_value][tag_value] = None # FIX ME 
             return memory_block[None] # FIX ME 
+        
+    def __str__(self):
+        return json.dumps(self.cache, indent=4, sort_keys=True)

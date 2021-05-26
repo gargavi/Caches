@@ -1,6 +1,8 @@
 from math import log
 import random
 import time
+import json 
+
 
 class Cache: 
     
@@ -23,6 +25,8 @@ class Cache:
         for i in range(2**self.index_size): # fix 100 to correct value  Answer: 2**self.index_size
             tag_dict = {}
             self.cache[i] = tag_dict
+    def __str__(self):
+        return json.dumps(self.cache, indent=4, sort_keys=True)
             
     def access(self, memory_index):
         offset_value = memory_index & (2**self.offset_size - 1)  
@@ -42,3 +46,4 @@ class Cache:
                 del(self.cache[index_value][random_key])
             self.cache[index_value][tag_value] = memory_block
             return memory_block[offset_value] # FIX ME: Answer offset_value
+        
